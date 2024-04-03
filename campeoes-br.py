@@ -21,10 +21,10 @@ class campeoesSpider(scrapy.Spider):
         for row in rows:
             if row.xpath('.//th[2]//text()').get() is not None:
                 current_page = row.xpath('.//th/text()').getall() # Define o header da tabela
-            ano = row.xpath('.//td[1]//text()').getall() # Coleta todos os anos da tabela
-            vencedor = row.xpath('.//td[2]//text()').getall() # Coleta todos os campeões da tabela
-            vice = row.xpath('.//td[3]//text()').getall() # Coleta todos os vices da tabela
-            bronze = row.xpath('.//td[4]//text()').getall() # Coleta todos os terceiros colocados da tabela
+            ano = row.xpath('.//td[1]//text()').get() # Coleta todos os anos da tabela
+            vencedor = row.xpath('.//td[2]//a//text()').get() # Coleta todos os campeões da tabela
+            vice = row.xpath('.//td[3]//a//text()').get() # Coleta todos os vices da tabela
+            bronze = row.xpath('.//td[4]//a//text()').get() # Coleta todos os terceiros colocados da tabela
 
             yield{
                 'ano': ano,
